@@ -22,6 +22,7 @@ void setup ()
       buttons[r][c] = new MSButton(r, c);
   }
   setBombs();
+  buttons[3][3].countBombs(3,3);
 }
 public void setBombs()
 {
@@ -103,13 +104,18 @@ public class MSButton
       if (marked == false)
         clicked = false;
       else if (bombs.contains(this))
+      {
         displayLosingMessage();
+        System.out.println("losing message");
+      }
       else if (countBombs(r, c)>0)
       {
+        System.out.println("label");
         label = (""+countBombs(r, c)+"");
       }
       else
       {
+        System.out.println("recursive");
         if (isValid (r-1, c-1))
           buttons[r-1][c-1].mousePressed();
         if (isValid (r-1, c))
@@ -152,7 +158,12 @@ public class MSButton
   public boolean isValid(int r, int c)
   {
     if (r<NUM_ROWS && c<NUM_COLS)
-      return true;
+    {
+      if (r>=0 && c>=0)
+        return true;
+      else
+        return false;
+    }
     else
       return false;
   }
