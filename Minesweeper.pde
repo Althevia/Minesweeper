@@ -5,7 +5,7 @@ public final static int NUM_ROWS = 20;
 public final static int NUM_COLS = 20;
 public final static int NUM_BOMBS = 10;
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); 
-int flipped = 0;
+int count = 0;
 void setup ()
 {
   size(600, 600);
@@ -48,22 +48,36 @@ public void draw ()
 }
 public boolean isWon()
 {
-  flipped = 0;
+  count = 0;
   for (int r=0; r<NUM_ROWS; r++)
   {
     for (int c=0; c<NUM_COLS; c++)
     {
-      //if (buttons[r][c].clicked==true && buttons[r][c].marked==false)
-      //  flipped = flipped + 1;
-      if (bombs.contains(this))
-        return false;
+      if (buttons[r][c].isClicked()==true)
+        count = count + 1;
     }
   }
-  //if (flipped == NUM_ROWS*NUM_COLS-NUM_BOMBS)
+  if (count ==NUM_ROWS*NUM_COLS-NUM_BOMBS)
+    return true;
+  else
+    return false;
+  
+  //flipped = 0;
+  //for (int r=0; r<NUM_ROWS; r++)
+  //{
+  //  for (int c=0; c<NUM_COLS; c++)
+  //  {
+      //if (buttons[r][c].clicked==true && buttons[r][c].marked==false)
+      //  flipped = flipped + 1;
+      //if (bombs.contains(this))
+        //return false;
+    //}
+  //}
+//  //if (flipped == NUM_ROWS*NUM_COLS-NUM_BOMBS)
   //  return true;
   //else
   //  return false;
-  return true;
+  //return true;
 }
 public void displayLosingMessage()
 {
@@ -129,7 +143,8 @@ public class MSButton
     clicked = true;
     if (mouseButton==RIGHT)
     {
-      marked = !marked;
+      if (label=="")
+        marked = !marked;
       if (marked == false)
         clicked = false;
     } else if (bombs.contains(this))
