@@ -26,7 +26,6 @@ void setup ()
     for (int c=0; c<NUM_COLS; c++)
       buttons[r][c] = new MSButton(r, c);
   }
-  //setBombs();
 }
 public void setBombs(int str, int stc)
 {
@@ -219,8 +218,3 @@ public class MSButton
     return numBombs;
   }
 }
-
-//public void moveBomb(int row, int col)
-//{
-//  bombs.remove
-//}
