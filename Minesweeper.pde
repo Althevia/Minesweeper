@@ -1,6 +1,5 @@
 import de.bezier.guido.*;
-//Declare and initialize NUM_ROWS and NUM_COLS = 20
-private MSButton[][] buttons; //2d array of minesweeper buttons
+private MSButton[][] buttons; 
 public final static int NUM_ROWS = 20;
 public final static int NUM_COLS = 20;
 public final static int NUM_BOMBS = 50;
@@ -14,11 +13,7 @@ void setup ()
 {
   size(600, 600);
   textAlign(CENTER, CENTER);
-
-  // make the manager
   Interactive.make( this );
-
-  //your code to declare and initialize buttons goes here
 
   buttons = new MSButton[NUM_ROWS][NUM_COLS]; 
   for (int r=0; r<NUM_ROWS; r++)
@@ -112,7 +107,7 @@ public class MSButton
     y = r*height;
     label = "";
     marked = clicked = false;
-    Interactive.add( this ); // register it with the manager
+    Interactive.add( this ); 
   }
   public boolean isMarked()
   {
@@ -122,7 +117,6 @@ public class MSButton
   {
     return clicked;
   }
-  // called by manager
 
   public void mousePressed () 
   {
